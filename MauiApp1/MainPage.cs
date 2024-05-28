@@ -7,16 +7,16 @@ namespace MauiApp1
 
     public class MainPage : ContentPage
     {
-        CStackLayout m_ContentStack= new CStackLayout();
-        Label m_LabelA = new Label { Text = "some Text A" };
-        Label m_LabelB = new Label { Text = "some Text B" };
+        View m_Collection;
         Button m_Button;
         CStackLayout m_MainView;
 
         public MainPage()
         {
-            m_ContentStack.Children.Add(m_LabelA);
-            m_ContentStack.Children.Add(m_LabelB);
+            m_Collection = new CollectionView
+            {
+                ItemsSource = new List<string>() { "aaa", "bbb", "ccc" },
+            };
 
             m_Button = new Button { Text = "Update", Command = new Command(OnUpdate) };
             m_MainView = new CStackLayout();
@@ -26,7 +26,7 @@ namespace MauiApp1
 
         void AddContentNow()
         {
-            m_MainView.Children.Add(m_ContentStack);
+            m_MainView.Children.Add(m_Collection);
             m_MainView.Children.Add(m_Button);
         }
 
